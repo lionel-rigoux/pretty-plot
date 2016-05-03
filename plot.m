@@ -59,7 +59,8 @@ for a=findobj(f,'Type','Axes')'
   a.Title.Position = [-0.25 1.05 0 ];
 
     for l=findobj(a,'Type','Line')'
-        l.LineWidth=3;
+        l.LineWidth=2;
+        bw = .02 * (a.XLim(2) - a.XLim(1));
     end
   
     for b=findobj(a,'Type','Bar')'
@@ -68,7 +69,7 @@ for a=findobj(f,'Type','Axes')'
       b.BaseLine.LineWidth=1;
       b.BaseLine.Color=.3*[1 1 1];
       b.BarWidth=.9;
-      bw = .15/numel(findobj(a,'Type','Bar'));
+      bw = .35*b.BarWidth;
     end
         
    for e=findobj(a,'Type','ErrorBar')'
@@ -81,22 +82,24 @@ for a=findobj(f,'Type','Axes')'
 
        for iL=1:numel(XDATA)
            l=line(a,XDATA([iL iL]), [YDATA_d(iL) YDATA_u(iL)]);
-           l.LineWidth=2;
+           l.LineWidth=1;
            l.Color = color;
            l.ZData=[-1 -1];
            
-           if ~isempty(findobj(a,'Type','Bar'))
+           %if ~isempty(findobj(a,'Type','Bar'))
+               color=.25*[1 1 1];
+               l.Color = color;
              l=line(a,XDATA([iL iL]) + [-bw bw], [YDATA_u(iL) YDATA_u(iL)]);
-              l.LineWidth=2;
+              l.LineWidth=1;
            l.Color = color;
            l.ZData=[-1 -1];
            l=line(a,XDATA([iL iL]) + [-bw bw], [YDATA_d(iL) YDATA_d(iL)]);
-           l.LineWidth=2;
+           l.LineWidth=1;
            l.Color = color;
            l.ZData=[-1 -1];
              
            
-           end
+           %end
        end
    end
 
