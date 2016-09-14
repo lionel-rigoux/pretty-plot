@@ -110,6 +110,12 @@ for a=findobj(f,'Type','Axes')'
         
         [boxes.Children.LineStyle] = deal('-');
         [boxes.Children.LineWidth] = deal(2);
+        
+        % deal with outliers
+        outliers = findobj(boxes,'Tag','Outliers');
+        [outliers.LineStyle] = deal('none');
+        [outliers.Marker] = deal('o');
+
     end
     
 end
