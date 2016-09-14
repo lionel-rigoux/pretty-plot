@@ -112,10 +112,11 @@ for a=findobj(f,'Type','Axes')'
   % a.YGrid = 'off';
   % a.ZGrid = 'off';
   
-             if ~isempty(findobj(a,'Tag','Box'))
+  boxes = findobj(a,'Tag','boxplot');
+             if ~isempty(boxes)
 
-            [a.Children.Children.LineStyle] = deal('-');
-            [a.Children.Children.LineWidth] = deal(2);
+            [boxes.Children.LineStyle] = deal('-');
+            [boxes.Children.LineWidth] = deal(2);
              end
   
 end
