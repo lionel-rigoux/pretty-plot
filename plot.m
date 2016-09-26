@@ -147,9 +147,9 @@ for a=findobj(f,'Type','Axes')'
 end
 
 print(figure_name,'-dsvg','-painters') ;
-try
-    [~,~] = system(sprintf(' /Applications/Inkscape.app/Contents/Resources/bin/inkscape -z  -d 600 $(pwd)/%s.svg  -A $(pwd)/%s.pdf',figure_name,figure_name));
-end
+% try
+%     [~,~] = system(sprintf(' /Applications/Inkscape.app/Contents/Resources/bin/inkscape -z  -d 600 $(pwd)/%s.svg  -A $(pwd)/%s.pdf',figure_name,figure_name));
+% end
 end
 
 function demo
