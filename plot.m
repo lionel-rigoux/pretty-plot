@@ -30,7 +30,7 @@ for a=findobj(f,'Type','Axes')'
     a.Box = 'off';
     a.Color = 'none' ;
     
-    a.LineWidth=2 ;
+    a.LineWidth=1.5 ;
     a.FontName = 'Verdana' ;
     a.FontSize = 12 ;
     
@@ -38,13 +38,13 @@ for a=findobj(f,'Type','Axes')'
     a.TickDir = 'out';
     a.TickLength = [.02 .05] ;
     
-    a.XLabel.FontWeight = 'bold';
+    a.XLabel.FontWeight = 'normal';
     a.XLabel.FontSize = 14 ;
     
-    a.YLabel.FontWeight = 'bold';
+    a.YLabel.FontWeight = 'normal';
     a.YLabel.FontSize = 14 ;
     
-    a.ZLabel.FontWeight = 'bold';
+    a.ZLabel.FontWeight = 'normal';
     a.ZLabel.FontSize = 14 ;
     
     a.Title.FontSize=17;
@@ -52,7 +52,7 @@ for a=findobj(f,'Type','Axes')'
     a.Title.Position = [-0.25 1.05 0 ];
     
     for l=findobj(a,'Type','Line')'
-        l.LineWidth=2;
+        l.LineWidth=2.2;
         bw = .02 * (a.XLim(2) - a.XLim(1));
     end
     
@@ -109,8 +109,34 @@ for a=findobj(f,'Type','Axes')'
     if ~isempty(boxes)
         
         [boxes.Children.LineStyle] = deal('-');
-        [boxes.Children.LineWidth] = deal(2);
+        [boxes.Children.LineWidth] = deal(1.5);
         
+        h = findobj(boxes,'Tag','Box');
+            for j=1:length(h)
+                p=patch(a,get(h(j),'XData'),get(h(j),'YData'),h(j).Color,'EdgeColor','none');
+                p.ZData = -ones(size(p.XData));
+                delete(h(j));
+            end
+        h = findobj(boxes,'Tag','Median');
+        [h.Color] = deal([1 1 1]);
+        [h.LineWidth] = deal(1.5);
+        
+        
+        h = findobj(boxes,'Tag','Upper Whisker');
+        [h.Color] = deal(.2*[1 1 1]);
+        [h.LineWidth] = deal(1);
+        h = findobj(boxes,'Tag','Lower Whisker');
+        [h.Color] = deal(.2*[1 1 1]);
+                [h.LineWidth] = deal(1);
+ h = findobj(boxes,'Tag','Lower Adjacent Value');
+        [h.Color] = deal(.2*[1 1 1]);
+                [h.LineWidth] = deal(1);
+
+ h = findobj(boxes,'Tag','Upper Adjacent Value');
+        [h.Color] = deal(.2*[1 1 1]);
+                [h.LineWidth] = deal(1);
+
+
         % deal with outliers
         outliers = findobj(boxes,'Tag','Outliers');
         [outliers.LineStyle] = deal('none');
