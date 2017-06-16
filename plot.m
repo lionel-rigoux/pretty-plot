@@ -30,7 +30,7 @@ for a=findobj(f,'Type','Axes')'
     a.Box = 'off';
     a.Color = 'none' ;
     
-    a.LineWidth=1.5 ;
+    a.LineWidth=2 ;
     a.FontName = 'Verdana' ;
     a.FontSize = 12 ;
     
@@ -38,22 +38,28 @@ for a=findobj(f,'Type','Axes')'
     a.TickDir = 'out';
     a.TickLength = [.02 .05] ;
     
-    a.XLabel.FontWeight = 'normal';
+    a.XLabel.FontWeight = 'bold';
     a.XLabel.FontSize = 14 ;
     
-    a.YLabel.FontWeight = 'normal';
+    a.YLabel.FontWeight = 'bold';
     a.YLabel.FontSize = 14 ;
     
-    a.ZLabel.FontWeight = 'normal';
+    a.ZLabel.FontWeight = 'bold';
     a.ZLabel.FontSize = 14 ;
     
-    a.Title.FontSize=17;
+    a.Title.FontSize=15;
     a.Title.Units = 'normalized';
-    a.Title.Position = [-0.25 1.05 0 ];
+    a.Title.Position = [-.15 1.05 0 ];
+    a.Title.HorizontalAlignment = 'left';
     
     for l=findobj(a,'Type','Line')'
         l.LineWidth=2.2;
         bw = .02 * (a.XLim(2) - a.XLim(1));
+    end
+    
+    for l=findobj(a,'Type','Text')'
+        l.FontSize = 12;
+        l.FontWeight = 'bold';
     end
     
     for b=findobj(a,'Type','Bar')'
@@ -145,7 +151,7 @@ for a=findobj(f,'Type','Axes')'
     end
     
 end
-print(figure_name,'-dsvg','-painters') ;
+print(figure_name,'-dsvg','-painters','-r600') ;
 % try
 %     [~,~] = system(sprintf(' /Applications/Inkscape.app/Contents/Resources/bin/inkscape -z  -d 600 $(pwd)/%s.svg  -A $(pwd)/%s.pdf',figure_name,figure_name));
 % end
