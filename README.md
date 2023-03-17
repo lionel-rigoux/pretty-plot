@@ -4,7 +4,7 @@ tools for publication quality graphs with matlab
 
 # Installation
 
-Save as a matlab module somewhere in your path as `+pretty` (dont forget the `+`).
+Add this folder to your Matlab path.
 
 # Usage
 
